@@ -17,9 +17,17 @@ if(check == 1){
 //	String url="list.jsp?pageNum"+pageNum;
 //	response.sendRedirect(url);
 	%>
-	<meta http-equiv="Refresh" content="5;url=list.jsp?pageNum=<%=pageNum%>" >
+	<meta http-equiv="Refresh" content="0;url=list.jsp?pageNum=<%=pageNum%>" >
 	<%	
-} else {
+} else if(check == 2) {
+	  // 경고창 후 비밀번호 입력화면
+	  %>
+	  <script type="text/javascript" >
+	   alert("비밀번호가 입력값을 초과하였습니다.");
+	   history.go(-1);
+	  </script>
+	<%
+	} else {
 	// 경고창 후 비밀번호 입력화면
   %>
   <script type="text/javascript" >

@@ -9,9 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 읽기</title>
-<link href="style.css" ref="stylesheet" type="text/css">
+<link href="style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body bgcolor="<%=bodyback_c%>">
 <%
   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
   int num = Integer.parseInt(request.getParameter("num"));
@@ -26,30 +26,30 @@
 <p>글내용 보기</p>
 <form>
 <table>
-<tr>
-  <td align="center" bgcolor="<%=value_c%>">글번호</td>
-  <td align="center" > <%= article.getNum() %></td>
-  <td align="center" bgcolor="<%=value_c%>">조회수</td>
-  <td align="center" > <%= article.getReadCount() %></td>
+<tr height="30">
+  <td align="center" width="125" bgcolor="<%=value_c%>">글번호</td>
+  <td align="center" width="125" > <%= article.getNum() %></td>
+  <td align="center" width="125" bgcolor="<%=value_c%>">조회수</td>
+  <td align="center" width="125" > <%= article.getReadCount() %></td>
 </tr>
-<tr>
+<tr height="30">
   <td align="center" bgcolor="<%=value_c%>">작성자</td>
   <td align="center" > <%= article.getWriter() %></td>
   <td align="center" bgcolor="<%=value_c%>">작성일</td>
   <td align="center" > <%= sdf.format(article.getRegDate()) %></td>
 </tr>
-<tr>
+<tr height="30">
   <td align="center" bgcolor="<%=value_c%>">글제목</td>
-  <td align="center" colspan="3" > <%= article.getSubject() %></td>
+  <td align="left" colspan="3" ><%= article.getSubject() %></td>
 </tr>
 <tr>
   <td align="center" bgcolor="<%=value_c%>">글내용</td>
-  <td align="center" colspan="3" > <pre> <%= article.getContent() %> </pre> </td>
+  <td align="left" colspan="3" ><pre><%= article.getContent() %></pre> </td>
 </tr>
-<tr>
+<tr height="30">
   <td colspan="4" bgcolor="<%=value_c%>">
     <input type="button" value="글수정"
-     onclick="document.location.href='updateForm.jsp?num=<%= article.getNum() %>'">
+     onclick="document.location.href='updateForm.jsp?num=<%= article.getNum() %>&pageNum=<%= pageNum %>'">
     <input type="button" value="글삭제"
      onclick="document.location.href='deleteForm.jsp?num=<%= article.getNum() %>&pageNum=<%= pageNum %>'">
     <input type="button" value="답글쓰기"

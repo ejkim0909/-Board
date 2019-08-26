@@ -251,14 +251,16 @@ public class BoardDBBean {
 				dbpasswd = rs.getString("passwd");
 				if(dbpasswd.contentEquals(article.getPasswd())) {
 					// update
-					sql="update eboard set writer=?, email=?, subject=?, content=? "
+					sql="update eboard set writer=?, email=?, subject=?, content=?,REG_DATE=?,ip=? "
 							+ " where num=?";
 					pstmt=conn.prepareStatement(sql);
 					pstmt.setString(1,article.getWriter());
 					pstmt.setString(2,article.getEmail());
 					pstmt.setString(3,article.getSubject());
 					pstmt.setString(4,article.getContent());
-					pstmt.setInt(5,article.getNum());
+					pstmt.setTimestamp(5,article.getRegDate());
+					pstmt.setString(6,article.getIp());
+					pstmt.setInt(7,article.getNum());
 					pstmt.executeUpdate();
 					result = 1;
 				}
@@ -286,6 +288,9 @@ public class BoardDBBean {
         String sql="";
 		String dbpasswd=""; 
         int result=-1;
+        if (passwd.length() > 12) {
+        	return 2;
+        }
         try {
 			conn=getConnection();
 			pstmt = conn.prepareStatement("select passwd from eboard where num=?");
